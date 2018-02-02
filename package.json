@@ -1,0 +1,63 @@
+{
+  "name": "test_frontend",
+  "version": "1.0.0",
+  "description": "Test for front-end developer",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "concurrently --kill-others  \"gulp server\"  \"npm run watch-css\" \"npm run start-js\"",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreamkas/test_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dreamkas/test_frontend/issues"
+  },
+  "homepage": "https://github.com/dreamkas/test_frontend#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-json-srv": "^1.0.1",
+    "gulp-load-plugins": "^1.3.0",
+    "http-proxy-middleware": "^0.17.2",
+    "run-sequence": "^1.2.2",
+    "eslint": "^4.16.0"
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "history": "^4.7.2",
+    "immutable": "^3.8.2",
+    "isomorphic-fetch": "^2.2.1",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2",
+    "path": "^0.12.7",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-md": "^1.2.11",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.8",
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
+    "webfontloader": "^1.6.28"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3001",
+      "changeOrigin": true
+    }
+  }
+}
